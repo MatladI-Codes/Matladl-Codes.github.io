@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofentse Matladi - Creative Biochemist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #001aad;
+            --highlight: #03d2cf;
+            --text-light: #f5f5f5;
+            --text-muted: #b0b0b0;
+            --gold-light: #F5E6B3;
+            --dark-blue: #2C3E50;
+            --medium-blue: #34495E;
+            --light-gray: #7F8C8D;
+            --pale-gray: #BDC3C7;
+            --off-white: #ECF0F1;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hide cursor on mobile */
+        @media (min-width: 769px) {
+            body {
+                cursor: none;
+            }
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .meticula-font {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Styles */
+        section {
+            position: relative;
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            overflow: hidden;
+        }
+
+        /* Video Backgrounds */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .video-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Content containers */
+        .hero-content,
+        .about-content,
+        .skills-grid,
+        .horizontal-timeline,
+        .projects-grid,
+        .contact-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section titles and content */
+        .section-title,
+        .about-text,
+        .about-image,
+        .skill-category,
+        .timeline-item,
+        .project-card,
+        .contact-title,
+        .contact-email,
+        .social-links {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Custom Cursor - Desktop only */
+        @media (min-width: 769px) {
+            .cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--highlight);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 10002;
+                transition: all 0.15s ease;
+                mix-blend-mode: difference;
+                display: block !important;
+            }
+
+            .cursor-follower {
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 10001;
+                transition: all 0.3s ease;
+                mix-blend-mode: difference;
+                display: block !important;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 117, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(44, 62, 80, 0.95);
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--highlight);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .resume-btn {
+            background: transparent;
+            color: var(--highlight);
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 1px solid var(--highlight);
+            border-radius: 4px;
+        }
+
+        .resume-btn:hover {
+            background: var(--highlight);
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            color: var(--text-light);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--dark-blue);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .section-title span {
+            color: var(--highlight);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--off-white);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-quote {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-left: 3px solid var(--highlight);
+            background: rgba(212, 175, 55, 0.1);
+            font-style: italic;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--secondary);
+        }
+
+        .skills-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .skill-category {
+            background: rgba(44, 62, 80, 0.8);
+            padding: 2rem;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            border: 1px solid rgba(139, 117, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--highlight);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .skill-category-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .skill-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-list li:before {
+            content: "▹";
+            color: var(--highlight);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--dark-blue);
+        }
+
+        .horizontal-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            width: 100%;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(139, 117, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            margin-bottom: 2rem;
+        }
+
+        .timeline-date {
+            color: var(--highlight);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .timeline-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .timeline-visual {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            border: 1px solid var(--highlight);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-visual:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .timeline-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .visual-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--text-light);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .timeline-visual:hover .visual-overlay {
+            opacity: 1;
+        }
+
+        .visual-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .visual-text {
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(44, 62, 80, 0.8);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            position: relative;
+            border-radius: 10px;
+            border: 1px solid rgba(237, 230, 194, 0.877);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--highlight);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .project-category {
+            color: var(--highlight);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: var(--dark-blue);
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+        }
+
+        .contact-email {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(139, 117, 0, 0.3);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            color: var(--highlight);
+            border-color: var(--highlight);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 4rem 0;
+            background: var(--primary);
+            overflow: hidden;
+        }
+
+        .tools-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .tools-scroll {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .tool-item {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 120px;
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+        }
+
+        .tool-name {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4rem;
+            font-style: italic;
+        }
+
+        /* Modals */
+        .video-options-modal,
+        .resume-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-options-modal.active,
+        .resume-modal.active {
+            display: flex;
+        }
+
+        .video-options-content,
+        .resume-modal-content {
+            background: var(--secondary);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--highlight);
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--highlight);
+        }
+
+        /* Welcome Popup */
+        .welcome-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .welcome-popup.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            background: var(--secondary);
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid var(--highlight);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight);
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .enter-btn {
+            background: transparent;
+            color: var(--highlight);
+            border: 2px solid var(--highlight);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .enter-btn:hover {
+            background: var(--highlight);
+            color: var(--primary);
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 4rem;
+            }
+            
+            nav {
+                padding: 1.5rem 4rem;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr auto 1fr;
+                gap: 4rem;
+            }
+            
+            .about-divider {
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(to bottom, transparent, var(--highlight), transparent);
+                margin: 0 2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .horizontal-timeline {
+                flex-direction: row;
+            }
+            
+            .timeline-item {
+                margin: 0 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .social-links {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="welcome-content">
+            <h1 class="welcome-title">Welcome</h1>
+            <p class="welcome-text">Step into my world where science meets creativity, and innovation knows no bounds. Let's explore possibilities together.</p>
+            <button class="enter-btn" id="enterBtn">Enter Portfolio</button>
+        </div>
+    </div>
+
+    <!-- Video Options Modal -->
+    <div class="video-options-modal" id="videoOptionsModal">
+        <div class="video-options-content">
+            <span class="close-modal" id="closeVideoModal">&times;</span>
+            <h2 class="video-options-title">Watch My Content</h2>
+            <div class="video-options-buttons">
+                <a href="https://www.youtube.com/@SYRE.reloaded" target="_blank" class="video-option-btn">
+                    <div class="video-icon" style="background-image: url('a\ minimalist\ black\ a.png');"></div>
+                    YouTube Channel
+                </a>
+                <a href="https://www.tiktok.com/@mr.syre" target="_blank" class="video-option-btn">
+                    <div class="video-icon" style="background-image: url('PgfG.png');"></div>
+                    TikTok Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Access Resume</h2>
+            <div class="resume-options">
+                <button class="resume-option-btn" id="viewResumeBtn">
+                     VIEW RESUME
+                </button>
+                <button class="resume-option-btn" id="downloadResumeBtn">
+                     DOWNLOAD PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor Elements - Desktop only -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav id="navbar">
+        <div class="logo" id="logo">
+            <img src="2.png" alt="OTCM Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#skills">EXPERTISE</a></li>
+            <li><a href="#experience">JOURNEY</a></li>
+            <li><a href="#work">PORTFOLIO</a></li>
+            <li><a href="#contact">CONNECT</a></li>
+        </ul>
+        <a href="#" class="resume-btn" id="resumeBtn">RESUME</a>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero" id="home">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="heroVideo">
+                <source src="vectee123 (1).mp4" type="video/mp4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMDMwZDJjIi8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjQwMCIgcj0iMTUwIiBmaWxsPSIjMDNkMmNmIiBvcGFjaXR5PSIwLjciLz4KPHBhdGggZD0iTTUwMCAzMDBMNzAwIDMwMEw2MDAgNTAwTDUwMCAzMDBaIiBmaWxsPSIjMDNkMmNmIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+" alt="Background">
+            </video>
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle">CREATIVE BIOCHEMIST & MULTIDISCIPLINARY ARTIST</div>
+            <h1 class="hero-title">Ofentse Matladi</h1>
+            <p class="hero-subtitle">Where scientific precision meets creative innovation - bridging worlds to build extraordinary solutions</p>
+        </div>
+    </section>
+
+    <!-- About Section with Video Background -->
+    <section class="about" id="about">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="aboutVideo">
+                <source src="large vee.mp4" type="mp4">
+                <img src="gems.png" alt="Background">
+            </video>
+        </div>
+        
+        <h2 class="section-title">My <span>Story</span></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm Ofentse Matladi, a dedicated Biochemistry and Chemistry student at North-West University with a passion for merging scientific rigor with creative expression. Based in Johannesburg, my journey from township beginnings to academic pursuits has shaped my unique perspective on problem-solving and innovation.</p>
+                
+                <p>My expertise spans biochemical analysis, laboratory techniques, and data interpretation, complemented by advanced skills in digital creation including video editing, graphic design, and web development. I approach each project with meticulous attention to detail and a commitment to excellence.</p>
+                
+                <p>As Marketing & Public Relations Officer for the NWU Chess Club, I've developed strategic communication skills and leadership capabilities. My academic achievements include consistent top performance and multiple merit awards, demonstrating my dedication to excellence in all endeavors.</p>
+                
+                <p>I believe in the power of interdisciplinary thinking to solve complex challenges and create meaningful impact. My work reflects this philosophy, blending analytical precision with creative vision.</p>
+                
+                <div class="about-quote meticula-font">
+                    "Precision in execution, creativity in vision - where science and art converge to build the extraordinary."
+                </div>
+            </div>
+            <div class="about-divider"></div>
+            <div class="about-image">
+                <img src="PgfG.png" alt="Ofentse Matladi">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with Video Background -->
+    <section class="skills" id="skills">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="skillsVideo">
+                <source src="large vee.mp4" type="video/mp4">
+                <img src="dbv.jpg" alt="Background">
+            </video>
+        </div>
+        
+        <h2 class="section-title">Areas of <span>Expertise</span></h2>
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <div class="skill-icon" style="background-image: url('skill.png');"></div>
+                <h3 class="skill-category-title">SCIENTIFIC MASTERY</h3>
+                <ul class="skill-list">
+                    <li>Biochemical Analysis</li>
+                    <li>Organic Chemistry</li>
+                    <li>Laboratory Techniques</li>
+                    <li>Data Interpretation</li>
+                    <li>Experimental Methods</li>
+                    <li>Laboratory Safety</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <div class="skill-icon" style="background-image: url('design-thinking.png');"></div>
+                <h3 class="skill-category-title">DIGITAL CREATION</h3>
+                <ul class="skill-list">
+                    <li>Video Editing (DaVinci Resolve)</li>
+                    <li>Web Development (HTML/VSC)</li>
+                    <li>Graphic Design (Canva)</li>
+                    <li>Microsoft Office Suite</li>
+                    <li>Google Workspace</li>
+                    <li>Social Media Marketing</li>
+                </ul>
+            </div>
+            <div class="skill-category fade-in">
+                <div class="skill-icon" style="background-image: url('determination\ \(1\).png');"></div>
+                <h3 class="skill-category-title">LEADERSHIP & STRATEGY</h3>
+                <ul class="skill-list">
+                    <li>Digital Marketing Strategy</li>
+                    <li>Project Management</li>
+                    <li>Public Speaking</li>
+                    <li>Cross-Cultural Communication</li>
+                    <li>Team Collaboration</li>
+                    <li>Event Coordination</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section with Video Background -->
+    <section class="experience" id="experience">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="experienceVideo">
+                <source src="large vee.mp4" type="video/mp4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMWExYTFhIi8+CjxwYXRoIGQ9Ik0yMDAgMjAwTDQwMCA0MDBMNjAwIDIwMEw4MDAgNDAwTDEwMDAgMjAwIiBzdHJva2U9IiMwM2QyY2YiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=" alt="Background">
+            </video>
+        </div>
+        
+        <h2 class="section-title">My <span>Journey</span></h2>
+        <div class="horizontal-timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-visual">
+                    <img src="pchess2.jpg" alt="NWU Chess Club">
+                    <div class="visual-overlay">
+                        <div class="visual-icon" style="background-image: url('chess.png');"></div>
+                        <div class="visual-text">NWU Chess Club</div>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">FEB 2025 - NOV 2025</div>
+                    <h3 class="timeline-title">Marketing & Public Relations Officer</h3>
+                    <p class="timeline-subtitle">NWU Chess Club | North-West University</p>
+                    <p class="timeline-description">
+                        Led multi-platform digital marketing strategy across Instagram and WhatsApp, coordinated campus-wide chess tournaments, 
+                        and drove membership growth through innovative promotional campaigns.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-visual">
+                    <img src="MC2.png" alt="North-West University">
+                    <div class="visual-overlay">
+                        <div class="visual-icon" style="background-image: url('ribbon.png');"></div>
+                        <div class="visual-text">University Life</div>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">FEB 2024 - DEC 2028 (EXPECTED)</div>
+                    <h3 class="timeline-title">BSc Biochemistry & Chemistry</h3>
+                    <p class="timeline-subtitle">North-West University, Mahikeng</p>
+                    <p class="timeline-description">
+                        3rd Year Biochemistry candidate demonstrating strong academic resilience in rigorous STEM curriculum. 
+                        Successfully completed all laboratory practicals with passing grades.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-visual">
+                    <a href="https://maps.google.com/?q=Palm+Ridge+Secondary+School+Johannesburg" target="_blank">
+                        <img src="palmridge.jpg" alt="Palm Ridge Ext 6 Secondary School">
+                        <div class="visual-overlay">
+                            <div class="visual-icon" style="background-image: url('school.png');"></div>
+                            <div class="visual-text">View Location</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date">JAN 2019 - DEC 2023</div>
+                    <h3 class="timeline-title">National Senior Certificate</h3>
+                    <p class="timeline-subtitle">Palm Ridge Ext 6 Secondary School, Johannesburg</p>
+                    <p class="timeline-description">
+                        Secured a bachelor's Pass with 2 Distinctions. Consistent Academic Top Achiever throughout my high school career with multiple academic merit awards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Video Background -->
+    <section class="projects" id="work">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="projectsVideo">
+                <source src="large vee.mp4" type="video/mp4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMWExYTFhIi8+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMTAwIiBmaWxsPSIjMDNkMmNmIiBvcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iOTAwIiBjeT0iNTAwIiByPSIxNTAiIGZpbGw9IiMwM2QyY2YiIG9wYWNpdHk9IjAuMyIvPgo8Y2lyY2xlIGN4PSI2MDAiIGN5PSI2MDAiIHI9IjEwMCIgZmlsbD0iIzAzZDJjZiIgb3BhY2l0eT0iMC4zIi8+Cjwvc3ZnPg==" alt="Background">
+            </video>
+        </div>
+        
+        <h2 class="section-title">Creative <span>Portfolio</span></h2>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Graphic\ Designing.png'); background-size: cover; background-position: center;">
+                    <div class="project-overlay">
+                        <div class="project-category">VIEW PROJECTS</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Graphic Design</h3>
+                    <p class="project-category">Visual Branding & Digital Art</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" id="videoEditingCard">
+                <div class="project-image" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('VE.png'); background-size: cover; background-position: center;">
+                    <div class="project-overlay">
+                        <div class="project-category">WATCH REELS</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Video Editing</h3>
+                    <p class="project-category">Motion Graphics & Content Creation</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('certs.png'); background-size: cover; background-position: center;">
+                    <div class="project-overlay">
+                        <div class="project-category">VIEW ACHIEVEMENTS</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Certifications</h3>
+                    <p class="project-category">Academic & Professional Milestones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Video Background -->
+    <section class="contact" id="contact">
+        <div class="video-bg">
+            <video autoplay muted loop playsinline id="contactVideo">
+                <source src="large vee.mp4" type="video/mp4">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjMWExYTFhIi8+CjxwYXRoIGQ9Ik0yMDAgMjAwTDQwMCA0MDBMNjAwIDIwMEw4MDAgNDAwTDEwMDAgMjAwIiBzdHJva2U9IiMwM2QyY2YiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=" alt="Background">
+            </video>
+        </div>
+        
+        <h2 class="contact-title">Let's Create <span>Something Extraordinary</span></h2>
+        <div class="contact-email">
+            <a href="mailto:thapelomatladi@outlook.com" style="color: var(--text-muted); text-decoration: none;">
+                thapelomatladi@outlook.com
+            </a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/ofentsematladi-tc" target="_blank" class="social-link">
+                <div class="social-icon" style="background-image: url('LK\ COLO.png');"></div>
+                LINKEDIN
+            </a>
+            <a href="https://www.instagram.com/arcxhve/" target="_blank" class="social-link">
+                <div class="social-icon" style="background-image: url('IG\ COLO.png');"></div>
+                INSTAGRAM
+            </a>
+            <a href="https://www.youtube.com/@SYRE.reloaded" target="_blank" class="social-link">
+                <div class="social-icon" style="background-image: url('youtube.png');"></div>
+                YOUTUBE
+            </a>
+            <a href="https://www.tiktok.com/@mr.syre" target="_blank" class="social-link">
+                <div class="social-icon" style="background-image: url('TIK\ COLO.png');"></div>
+                TIKTOK
+            </a>
+            <a href="https://wa.me/27631819590" target="_blank" class="social-link">
+                <div class="social-icon" style="background-image: url('WA\ COLO.png');"></div>
+                WHATSAPP
+            </a>
+        </div>
+        
+        <!-- Tools Section under Contact -->
+        <div class="tools-section">
+            <h2 class="tools-title">Tools & Technologies</h2>
+            <div class="tools-scroll">
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Canva_Logo_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Visual\ Studio\ Code_Logo_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Freepik\ 🫐_id_9TGGN0L_0.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Adobe_idLnet8cfu_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Visual\ Studio\ Code_Logo_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Canva_Logo_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Vecteezy_idfG8tRTDx_0.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Freepik\ 🫐_id_9TGGN0L_0.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Adobe_idLnet8cfu_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-icon" style="background-image: url('Visual\ Studio\ Code_Logo_1.png');"></div>
+                    <div class="tool-name"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-note">Crafted with precision and published with purpose</div>
+    </section>
+
+    <script>
+        // Welcome Popup
+        const welcomePopup = document.getElementById('welcomePopup');
+        const enterBtn = document.getElementById('enterBtn');
+
+        enterBtn.addEventListener('click', () => {
+            welcomePopup.classList.add('hidden');
+            // Start all videos when user enters
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.play().catch(e => console.log('Video play failed:', e));
+            });
+        });
+
+        // Custom Cursor - Desktop only
+        if (window.innerWidth >= 769) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+
+            // Cursor expand on hover - including modal elements
+            const hoverElements = document.querySelectorAll('a, .project-card, button, .resume-btn, .close-modal, .timeline-visual, .resume-option-btn, .video-option-btn, .social-link');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    cursorFollower.style.transform = 'scale(1.5)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursorFollower.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Logo navigation to home
+        document.getElementById('logo').addEventListener('click', () => {
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Video Options Modal
+        const videoEditingCard = document.getElementById('videoEditingCard');
+        const videoOptionsModal = document.getElementById('videoOptionsModal');
+        const closeVideoModal = document.getElementById('closeVideoModal');
+
+        videoEditingCard.addEventListener('click', (e) => {
+            e.preventDefault();
+            videoOptionsModal.classList.add('active');
+        });
+
+        closeVideoModal.addEventListener('click', () => {
+            videoOptionsModal.classList.remove('active');
+        });
+
+        videoOptionsModal.addEventListener('click', (e) => {
+            if (e.target === videoOptionsModal) {
+                videoOptionsModal.classList.remove('active');
+            }
+        });
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Resume Modal Functionality
+        const resumeBtn = document.getElementById('resumeBtn');
+        const resumeModal = document.getElementById('resumeModal');
+        const closeModal = document.getElementById('closeModal');
+        const viewResumeBtn = document.getElementById('viewResumeBtn');
+        const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+
+        // Open modal
+        resumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            resumeModal.classList.add('active');
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            resumeModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        resumeModal.addEventListener('click', (e) => {
+            if (e.target === resumeModal) {
+                resumeModal.classList.remove('active');
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+                resumeModal.classList.remove('active');
+            }
+            if (e.key === 'Escape' && videoOptionsModal.classList.contains('active')) {
+                videoOptionsModal.classList.remove('active');
+            }
+        });
+
+        // View resume functionality
+        viewResumeBtn.addEventListener('click', () => {
+            // REPLACE WITH YOUR ACTUAL RESUME PATH
+            window.open('Mr Matladi -Resume.pdf', '_blank');
+        });
+
+        // Download resume functionality
+        downloadResumeBtn.addEventListener('click', () => {
+            // REPLACE WITH YOUR ACTUAL RESUME PATH
+            const link = document.createElement('a');
+            link.href = 'Mr Matladi -Resume.pdf';
+            link.download = 'Ofentse_Matladi_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Ensure videos play on mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.setAttribute('playsinline', '');
+                video.setAttribute('muted', '');
+                video.setAttribute('autoplay', '');
+                video.setAttribute('loop', '');
+            });
+        });
+    </script>
+</body>
+</html> 
