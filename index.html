@@ -31,9 +31,10 @@
             font-family: 'Inter', sans-serif;
             background-color: #1A1A2E;
             background-image:
-                linear-gradient(rgba(46, 94, 170, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(46, 94, 170, 0.15) 1px, transparent 1px);
-            background-size: 32px 32px;
+                radial-gradient(circle, rgba(46,94,170,0.3) 1px, transparent 1px),
+                linear-gradient(rgba(232,18,28,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(247,201,72,0.05) 1px, transparent 1px);
+            background-size: 32px 32px, 64px 64px, 64px 64px;
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
@@ -189,9 +190,10 @@
         }
 
         .hero-photo {
+            display: block;
             margin: 2rem auto;
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            max-width: 500px;
             border: 4px solid var(--red);
             box-shadow: 6px 6px 0 var(--yellow);
             overflow: hidden;
@@ -199,7 +201,8 @@
 
         .hero-photo img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
             object-fit: cover;
             object-position: top center;
         }
@@ -977,7 +980,7 @@
             <p class="byline" id="b3">FUTURE TRAILBLAZER <span class="pixel-cursor">&#9646;</span></p>
         </div>
         <div class="hero-photo">
-            <img src="assets/20260517_210937.png" alt="Ofentse Matladi">
+            <img src="assets/1000920127.png" alt="Ofentse Matladi">
         </div>
         <p class="hero-story">
             "Tony Stark built the Iron Man suit in a cave. Steve Jobs told the world to stay hungry, stay foolish. I built mine from a dying phone in Katlehong — no laptop, no funding, no map. Just hunger."
@@ -1164,7 +1167,7 @@
                 <span class="venture-badge">Red Bull Basement 2026 — National Finalist · World Final, San Francisco</span>
             </div>
             <div class="venture-card fade-in">
-                <img src="assets/1000920127.png" alt="BeasyBaby" class="venture-logo">
+                <img src="assets/20260517_210937.png" alt="BeasyBaby" class="venture-logo">
                 <div class="venture-name">BeasyBaby</div>
                 <div class="venture-tag">ParentTech Platform</div>
                 <p class="venture-desc">A platform built for young and first-time parents in South Africa. Covering health, finance, wellness, development, AI chat, and community. Free for all users. Android first. Beta launch 2027.</p>
@@ -1284,39 +1287,104 @@
 
 <script>
     // ── BOOT SEQUENCE ──
-    const bootLines = [
-        'SEDIQ. OS v1.0',
-        'Initializing...',
-        'Loading: Ofentse Matladi...',
-        'Status: ONLINE'
-    ];
-
     const terminal = document.getElementById('boot-terminal');
     const bootScreen = document.getElementById('boot-screen');
 
-    async function typeChar(el, char, delay) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                el.textContent += char;
-                resolve();
-            }, delay);
-        });
+    function wait(ms) {
+        return new Promise(r => setTimeout(r, ms));
     }
 
-    async function typeLine(text) {
+    async function typeInto(el, text, charDelay) {
+        for (let i = 0; i < text.length; i++) {
+            el.textContent += text[i];
+            await wait(charDelay);
+        }
+    }
+
+    function addLine(text, color) {
         const span = document.createElement('span');
         span.className = 'boot-line';
+        if (color) span.style.color = color;
+        span.textContent = text;
         terminal.appendChild(span);
-        for (let i = 0; i < text.length; i++) {
-            await typeChar(span, text[i], 60);
+        return span;
+    }
+
+    async function runProgressBar() {
+        const barWrap = document.createElement('span');
+        barWrap.className = 'boot-line';
+        terminal.appendChild(barWrap);
+
+        const total = 20;
+        for (let i = 0; i <= total; i++) {
+            const filled = '█'.repeat(i);
+            const empty  = '░'.repeat(total - i);
+            const pct    = Math.round((i / total) * 100);
+            barWrap.textContent = '[' + filled + empty + '] ' + pct + '%';
+            await wait(55);
         }
     }
 
     async function runBoot() {
-        for (const line of bootLines) {
-            await typeLine(line);
+        // Progress bar
+        await runProgressBar();
+        await wait(200);
+
+        // Initializing
+        const initEl = document.createElement('span');
+        initEl.className = 'boot-line';
+        terminal.appendChild(initEl);
+        await typeInto(initEl, 'Initializing...', 55);
+        await wait(150);
+
+        // Loading name
+        const loadEl = document.createElement('span');
+        loadEl.className = 'boot-line';
+        terminal.appendChild(loadEl);
+        await typeInto(loadEl, 'Loading: Ofentse Thapelo Chinedu Matladi...', 40);
+        await wait(300);
+
+        // Goal: Bioche... then struck out, then Computer Science
+        const goalEl = document.createElement('span');
+        goalEl.className = 'boot-line';
+        terminal.appendChild(goalEl);
+        await typeInto(goalEl, 'Goal: ', 50);
+        await wait(100);
+
+        const cancelSpan = document.createElement('span');
+        cancelSpan.style.color = '#FF4444';
+        goalEl.appendChild(cancelSpan);
+        const cancelText = 'Bioche';
+        for (let i = 0; i < cancelText.length; i++) {
+            cancelSpan.textContent += cancelText[i];
+            await wait(60);
         }
-        await new Promise(r => setTimeout(r, 1000));
+        await wait(300);
+        cancelSpan.style.textDecoration = 'line-through';
+        cancelSpan.style.opacity = '0.6';
+        await wait(200);
+
+        const continueSpan = document.createElement('span');
+        continueSpan.style.color = '#F7C948';
+        goalEl.appendChild(continueSpan);
+        await typeInto(continueSpan, ' Computer Science ...', 45);
+        await wait(300);
+
+        // Initialization complete
+        const completeEl = document.createElement('span');
+        completeEl.className = 'boot-line';
+        terminal.appendChild(completeEl);
+        await typeInto(completeEl, '... Initialization Complete...', 45);
+        await wait(400);
+
+        // Status: ONLINE
+        const statusEl = document.createElement('span');
+        statusEl.className = 'boot-line';
+        statusEl.style.color = '#00FF41';
+        terminal.appendChild(statusEl);
+        await typeInto(statusEl, 'Status: ONLINE', 60);
+
+        await wait(900);
         bootScreen.classList.add('fade-out');
         setTimeout(() => {
             bootScreen.style.display = 'none';
