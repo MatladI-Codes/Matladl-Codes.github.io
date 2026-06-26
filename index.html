@@ -29,7 +29,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
+            background-color: #1A1A2E;
+            background-image:
+                linear-gradient(rgba(46, 94, 170, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 94, 170, 0.15) 1px, transparent 1px);
+            background-size: 32px 32px;
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
@@ -45,7 +49,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(26,26,46,0.95);
+            background: rgba(26,26,46,0.97);
             backdrop-filter: blur(10px);
             border-bottom: 2px solid var(--red);
         }
@@ -123,13 +127,9 @@
             white-space: nowrap;
         }
 
-        .boot-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.1em;
-            background: #00FF41;
-            vertical-align: text-bottom;
-            animation: blink 0.7s step-end infinite;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* ── HERO ── */
@@ -142,20 +142,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(232,18,28,0.03) 2px,
-                rgba(232,18,28,0.03) 4px
-            );
-            pointer-events: none;
         }
 
         .hero-content {
@@ -202,11 +188,6 @@
             animation: blink 0.7s step-end infinite;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
         .hero-photo {
             margin: 2rem auto;
             width: 200px;
@@ -214,7 +195,6 @@
             border: 4px solid var(--red);
             box-shadow: 6px 6px 0 var(--yellow);
             overflow: hidden;
-            image-rendering: auto;
         }
 
         .hero-photo img {
@@ -280,7 +260,6 @@
             gap: 1rem;
             min-width: 220px;
             transition: border-color 0.2s, box-shadow 0.2s;
-            image-rendering: auto;
         }
 
         .badge-card:hover {
@@ -361,7 +340,7 @@
 
         /* ── SKILLS ── */
         #arsenal {
-            background: var(--bg);
+            background: rgba(0,0,0,0.1);
         }
 
         .skills-grid {
@@ -483,13 +462,18 @@
         .cert-disclaimer a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            font-family: 'Space Mono', monospace;
             flex-shrink: 0;
             margin-top: 0.05rem;
+            border: 1px solid var(--text-muted);
+            padding: 0.1rem 0.4rem;
+            transition: color 0.2s, border-color 0.2s;
         }
 
         .cert-disclaimer a:hover {
             color: var(--yellow);
+            border-color: var(--yellow);
         }
 
         .cert-disclaimer-text {
@@ -501,7 +485,7 @@
 
         /* ── VENTURES ── */
         #ventures {
-            background: var(--bg);
+            background: rgba(0,0,0,0.1);
         }
 
         .ventures-subtitle {
@@ -530,6 +514,14 @@
         .venture-card:hover {
             border-color: var(--yellow);
             box-shadow: 6px 6px 0 var(--yellow);
+        }
+
+        .venture-logo {
+            height: 60px;
+            width: auto;
+            display: block;
+            margin-bottom: 1rem;
+            object-fit: contain;
         }
 
         .venture-name {
@@ -596,18 +588,30 @@
             border-left: 3px solid var(--red);
         }
 
-        .redbull-img {
+        /* Red Bull credential card (text-based, replaces PDF image) */
+        .redbull-cred-card {
             margin-top: 1.5rem;
-            border: 2px solid var(--red);
-            max-width: 100%;
-            display: block;
+            border-left: 4px solid var(--red);
+            background: rgba(0,0,0,0.45);
+            border-top: 1px solid rgba(232,18,28,0.3);
+            border-right: 1px solid rgba(232,18,28,0.3);
+            border-bottom: 1px solid rgba(232,18,28,0.3);
+            padding: 1.4rem 1.6rem;
         }
 
-        .redbull-img img {
-            width: 100%;
-            max-width: 480px;
-            height: auto;
-            display: block;
+        .redbull-cred-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--yellow);
+            letter-spacing: 1px;
+            margin-bottom: 0.7rem;
+        }
+
+        .redbull-cred-body {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text);
+            line-height: 1.9;
         }
 
         .pixel-btn {
@@ -669,7 +673,7 @@
 
         /* ── CREDENTIALS ── */
         #credentials {
-            background: var(--bg);
+            background: rgba(0,0,0,0.1);
         }
 
         .creds-grid {
@@ -742,13 +746,14 @@
         }
 
         .padlock-btn {
-            font-size: 1rem;
-            border: 2px solid var(--text-muted);
+            border-color: var(--text-muted);
             color: var(--text-muted);
         }
 
         .padlock-btn:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
+            border-color: var(--yellow);
+            color: var(--yellow);
         }
 
         /* ── CONTACT ── */
@@ -939,8 +944,7 @@
 
 <!-- Boot Screen -->
 <div id="boot-screen">
-    <div class="boot-terminal" id="boot-terminal">
-    </div>
+    <div class="boot-terminal" id="boot-terminal"></div>
 </div>
 
 <!-- Navigation -->
@@ -973,7 +977,7 @@
             <p class="byline" id="b3">FUTURE TRAILBLAZER <span class="pixel-cursor">&#9646;</span></p>
         </div>
         <div class="hero-photo">
-            <img src="https://drive.google.com/uc?export=view&id=1x5AhgophDOpVJVQoAqeYj3RyGTxurl82" alt="Ofentse Matladi">
+            <img src="assets/20260517_210937.png" alt="Ofentse Matladi">
         </div>
         <p class="hero-story">
             "Tony Stark built the Iron Man suit in a cave. Steve Jobs told the world to stay hungry, stay foolish. I built mine from a dying phone in Katlehong — no laptop, no funding, no map. Just hunger."
@@ -987,7 +991,7 @@
 <div id="badges">
     <div class="badges-track">
         <div class="badge-card">
-            <img class="badge-logo" src="https://drive.google.com/uc?export=view&id=1bF8Qo6v5jHqikyZVU2dQ2HK81guN-PMs" alt="OPSWAT">
+            <img class="badge-logo" src="assets/opswat-introduction-to-critical-infrastructure-protection-icip.png" alt="OPSWAT">
             <div class="badge-text">
                 <span class="badge-name">OPSWAT ICIP</span>
                 <span class="badge-issuer">OPSWAT · Jun 2026</span>
@@ -1129,7 +1133,7 @@
                 <h3 class="timeline-entry-title">National Senior Certificate — Palm Ridge Ext 6</h3>
                 <p class="timeline-entry-desc">Completed NSC with Bachelor's Pass and 2 Distinctions at Palm Ridge Ext 6 Secondary School, Katlehong. Consistently ranked in the top 10 learners over 5 years.</p>
                 <div class="cert-disclaimer">
-                    <a href="https://drive.google.com/uc?export=view&id=1FXniN-s_1gDc6CMCIpBzi1HILfhHeDXX" target="_blank" title="Verified Certificate">&#128274;</a>
+                    <a href="assets/1782494992588.png" target="_blank" title="Verified Certificate — Restricted">LOCK</a>
                     <span class="cert-disclaimer-text">This certificate is verified by Umalusi. The original document is available upon request to authorised institutions only. Public display is intentionally restricted to prevent fraud. Sharing occurs exclusively with the consent of the candidate and rightful institutional parties.</span>
                 </div>
             </div>
@@ -1160,6 +1164,7 @@
                 <span class="venture-badge">Red Bull Basement 2026 — National Finalist · World Final, San Francisco</span>
             </div>
             <div class="venture-card fade-in">
+                <img src="assets/1000920127.png" alt="BeasyBaby" class="venture-logo">
                 <div class="venture-name">BeasyBaby</div>
                 <div class="venture-tag">ParentTech Platform</div>
                 <p class="venture-desc">A platform built for young and first-time parents in South Africa. Covering health, finance, wellness, development, AI chat, and community. Free for all users. Android first. Beta launch 2027.</p>
@@ -1172,8 +1177,9 @@
             <div class="redbull-subtitle">"One idea. One stage. 135,000+ competitors."</div>
             <p class="redbull-stat">2026 — NOUS selected as South Africa National Finalist. Pitched at the World Final, San Francisco, Silicon Valley, June 2026.</p>
             <p class="redbull-stat">2027 — 25 concepts currently in development for submission. Pipeline is private.</p>
-            <div class="redbull-img">
-                <img src="https://drive.google.com/uc?export=view&id=1DQLVLNhyU3NiwKxNeByVFFYhDau7HeXQ" alt="Red Bull Basement Selection Letter">
+            <div class="redbull-cred-card">
+                <div class="redbull-cred-title">RED BULL BASEMENT 2026 — TOP SUBMISSION</div>
+                <p class="redbull-cred-body">Official selection email received 10 March 2026 from Red Bull South Africa confirming NOUS as one of the top ideas nationally.</p>
             </div>
             <a href="https://www.redbull.com/gb-en/event-series/basement" target="_blank" class="pixel-btn">Learn More</a>
         </div>
@@ -1187,7 +1193,7 @@
     <div class="inner">
         <h2 class="section-title fade-in">THE CHESS FILES</h2>
         <p class="chess-body fade-in">Chess isn't a hobby. It's an operating system. Every move is a decision under pressure, every game a simulation of real life. I've been playing since under-12. I returned to competitive chess at North-West University where I served as Marketing &amp; PR Officer and Chess Instructor at Mafikeng Campus.</p>
-        <p class="chess-stats fade-in">ELO RATING: 1600 · CLUB: RANDBURG METS · SINCE: UNDER-12</p>
+        <p class="chess-stats fade-in">ELO RATING: 1600 · SINCE: UNDER-12</p>
         <div class="chess-quote-card fade-in">
             "The board doesn't care where you came from. It only cares about your next move."
         </div>
@@ -1204,11 +1210,11 @@
         <div class="creds-grid">
 
             <div class="cred-card fade-in">
-                <img class="cred-logo" src="https://drive.google.com/uc?export=view&id=1bF8Qo6v5jHqikyZVU2dQ2HK81guN-PMs" alt="OPSWAT">
+                <img class="cred-logo" src="assets/opswat-introduction-to-critical-infrastructure-protection-icip.png" alt="OPSWAT">
                 <div class="cred-name">OPSWAT Introduction to Computational Infrastructure Protection (ICIP)</div>
                 <div class="cred-issuer">OPSWAT</div>
                 <div class="cred-date">Jun 2026 · Expires Jul 2027</div>
-                <a class="cred-btn" href="https://drive.google.com/uc?export=view&id=1oTyZInd8XRZrRv0BCf8cwyz40E6aVquy" target="_blank">View Certificate</a>
+                <a class="cred-btn" href="assets/introduction_to_cip.png" target="_blank">View Certificate</a>
             </div>
 
             <div class="cred-card fade-in">
@@ -1224,7 +1230,7 @@
                 <div class="cred-name">Chess Marketing &amp; Public Relations Officer</div>
                 <div class="cred-issuer">NWU Sport · North-West University</div>
                 <div class="cred-date">Feb–Nov 2025</div>
-                <a class="cred-btn" href="https://drive.google.com/uc?export=view&id=1X55fZwvnxrTSMpS0dtKRjazG-aSqiC0R" target="_blank">View Certificate</a>
+                <a class="cred-btn" href="assets/1782494566012.png" target="_blank">View Certificate</a>
             </div>
 
             <div class="cred-card fade-in">
@@ -1232,7 +1238,7 @@
                 <div class="cred-name">National Senior Certificate · NQF Level 4</div>
                 <div class="cred-issuer">Umalusi · Palm Ridge Ext 6 Secondary School</div>
                 <div class="cred-date">Dec 2023</div>
-                <button class="cred-btn padlock-btn" id="nscLockBtn">&#128274; Restricted</button>
+                <button class="cred-btn padlock-btn" id="nscLockBtn">LOCK — Restricted</button>
             </div>
 
         </div>
@@ -1335,7 +1341,6 @@
         document.getElementById('navLinks').classList.toggle('open');
     });
 
-    // close nav when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(a => {
         a.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('open');
