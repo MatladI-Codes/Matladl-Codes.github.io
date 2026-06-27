@@ -636,12 +636,20 @@
             padding: 0.6rem 1.4rem;
             text-decoration: none;
             letter-spacing: 1px;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.18s, color 0.18s, transform 0.12s, box-shadow 0.12s;
+            cursor: pointer;
         }
 
         .pixel-btn:hover {
             background: var(--yellow);
             color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #b8940e;
+        }
+
+        .pixel-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 #b8940e;
         }
 
         /* ── CHESS IMAGE STRIP ── */
@@ -838,6 +846,7 @@
             color: #1a1a1a;
             background: transparent;
             border: 2px solid var(--red);
+            transition: background 0.18s, color 0.18s, transform 0.12s, box-shadow 0.12s;
             padding: 0.4rem 0.8rem;
             text-decoration: none;
             cursor: pointer;
@@ -848,6 +857,14 @@
 
         .cred-btn:hover {
             background: var(--red);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 0 #9a0c12;
+        }
+
+        .cred-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 0 #9a0c12;
         }
 
         .padlock-btn {
@@ -891,7 +908,7 @@
             text-decoration: none;
             border: 2px solid var(--red);
             padding: 0.9rem 1.4rem;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.12s, box-shadow 0.12s;
             letter-spacing: 1px;
         }
 
@@ -899,6 +916,13 @@
             border-color: var(--yellow);
             color: var(--yellow);
             background: rgba(247,201,72,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 0 rgba(247,201,72,0.4);
+        }
+
+        .contact-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 0 rgba(247,201,72,0.4);
         }
 
         .contact-btn .btn-cursor {
@@ -1131,8 +1155,8 @@
     <div class="inner">
         <h2 class="section-title fade-in">CHAPTER ONE: THE BUILDER</h2>
         <div class="about-body fade-in">
-            <p>I didn't come from Silicon Valley. I came from Katlehong — a township in the south of Johannesburg that the world rarely puts on a map. No trust fund. No laptop. No blueprint. Just a dying phone, an internet connection, and an obsessive need to build things that matter. I taught myself to code through Harvard's CS50 and IBM's AI curriculum — not because someone told me to, but because waiting was never an option.</p>
-            <p>I left North-West University not as someone who failed, but as someone who found the wrong map. Biochemistry sharpened my precision. The pivot sharpened my purpose. Today I operate SEDIQ. — a holding concept and pilot in progress, housing ventures in AI, ParentTech, and beyond. I'm twenty years old, based in Johannesburg, and actively exploring prompt engineering with Claude (Anthropic), ChatGPT (OpenAI), Replit Agent, and Lovable Agent. I'm just getting started.</p>
+            <p>I didn't come from Silicon Valley. I was raised in Palmridge, Katlehong: a small township in the south of Johannesburg with very little tech infrastructure. Raised by Mme Jane Mohapi after my mother's departure from this world, I learned that hard work and faith will always lead to success — and I wanted to make a difference in my community. For years I struggled to know what I wanted, but then I realised I was meant to be an architect of tech solutions and future innovation. I started with a portfolio built from a dying phone, limited internet connection, and an obsessive need to build things that matter. I taught myself to code through Harvard's CS50 and IBM's AI curriculum: not because someone told me to, but because waiting was never an option.</p>
+            <p>Although my North-West University journey was cut short due to medical and academic misalignment, I believed the journey was an opportunity to grow and learn — not to view myself as someone who failed, but as someone who found the wrong map. Biochemistry sharpened my precision. The pivot sharpened my purpose. Today I operate SEDIQ, a holding concept and pilot in progress, housing ventures in AI, ParentTech, and beyond. I'm twenty years old, based in Johannesburg, and actively exploring prompt engineering with Claude (Anthropic), ChatGPT (OpenAI), Replit Agent, and Lovable Agent. I'm just getting started.</p>
         </div>
         <div class="about-quote fade-in">
             <p>"Precision in execution and creativity in vision is what builds the extraordinary."</p>
