@@ -28,14 +28,15 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1A1A2E;
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f8f9fa;
             background-image:
-                radial-gradient(circle, rgba(46,94,170,0.3) 1px, transparent 1px),
-                linear-gradient(rgba(232,18,28,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(247,201,72,0.05) 1px, transparent 1px);
-            background-size: 32px 32px, 64px 64px, 64px 64px;
-            color: var(--text);
+                linear-gradient(rgba(0,122,77,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(222,56,49,0.12) 1px, transparent 1px),
+                linear-gradient(rgba(0,35,149,0.07) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255,182,18,0.07) 2px, transparent 2px);
+            background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
+            color: #1f2937;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -636,6 +637,79 @@
             color: #000;
         }
 
+        /* ── CHESS IMAGE STRIP ── */
+        .chess-images {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            margin-top: 1.2rem;
+            padding-bottom: 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--red) transparent;
+        }
+
+        .chess-images::-webkit-scrollbar { height: 4px; }
+        .chess-images::-webkit-scrollbar-thumb { background: var(--red); }
+
+        .chess-images img {
+            flex-shrink: 0;
+            width: 220px;
+            max-width: 220px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 2px solid var(--red);
+        }
+
+        .chess-img-caption {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.6rem;
+        }
+
+        /* ── PROJECTS ── */
+        #projects {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card-new {
+            background: rgba(0,0,0,0.4);
+            border: 2px solid var(--red);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card-new:hover {
+            border-color: var(--yellow);
+            box-shadow: 4px 4px 0 var(--yellow);
+        }
+
+        .project-card-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--yellow);
+            line-height: 1.5;
+        }
+
+        .project-card-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.8;
+            flex: 1;
+        }
+
         /* ── CHESS ── */
         #chess {
             background: rgba(0,0,0,0.2);
@@ -727,6 +801,14 @@
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
             color: var(--yellow);
+        }
+
+        .cred-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            line-height: 1.7;
+            margin: 0.2rem 0 0.4rem;
         }
 
         .cred-btn {
@@ -963,6 +1045,7 @@
         <li><a href="#arsenal">Arsenal</a></li>
         <li><a href="#timeline">Timeline</a></li>
         <li><a href="#ventures">Ventures</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#chess">Chess</a></li>
         <li><a href="#credentials">Credentials</a></li>
         <li><a href="#connect">Connect</a></li>
@@ -1114,6 +1197,12 @@
                 <span class="timeline-date-badge">JAN–NOV 2025</span>
                 <h3 class="timeline-entry-title">Marketing &amp; PR Officer — NWU Chess Club</h3>
                 <p class="timeline-entry-desc">Served as the officially certified Marketing and Public Relations Officer for the NWU Chess Club at Mafikeng Campus. Led multi-platform digital marketing, coordinated campus-wide tournaments, and drove membership growth.</p>
+                <div class="chess-images">
+                    <img src="assets/playingchess.jpg" alt="NWU Chess Club 1">
+                    <img src="assets/pchess2.jpg" alt="NWU Chess Club 2">
+                    <img src="assets/pchess3.jpg" alt="NWU Chess Club 3">
+                </div>
+                <p class="chess-img-caption">NWU Chess Club, Mafikeng Campus, 2025.</p>
             </div>
 
             <div class="timeline-entry fade-in">
@@ -1184,7 +1273,34 @@
                 <div class="redbull-cred-title">RED BULL BASEMENT 2026 — TOP SUBMISSION</div>
                 <p class="redbull-cred-body">Official selection email received 10 March 2026 from Red Bull South Africa confirming NOUS as one of the top ideas nationally.</p>
             </div>
-            <a href="https://www.redbull.com/gb-en/event-series/basement" target="_blank" class="pixel-btn">Learn More</a>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem;">
+                <a href="https://www.redbull.com/gb-en/event-series/basement" target="_blank" class="pixel-btn" style="margin-top:0;">Learn More</a>
+                <a href="assets/redbull-basement-selection.pdf" target="_blank" class="pixel-btn" style="margin-top:0;background:rgba(232,18,28,0.15);border-color:var(--yellow);color:var(--yellow);">View Selection Letter (PDF)</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- Projects -->
+<section id="projects">
+    <div class="inner">
+        <h2 class="section-title fade-in">PROJECTS</h2>
+        <div class="projects-grid">
+
+            <div class="project-card-new fade-in">
+                <div class="project-card-title">OldPort — Portfolio v1</div>
+                <p class="project-card-desc">The first iteration of this portfolio, designed and built independently using HTML, CSS, and JavaScript. Hosted on GitHub Pages. Reflects early-stage front-end development skills and creative direction.</p>
+                <a class="cred-btn" href="https://matladi-codes.github.io/Matladl-Codes.github.io/" target="_blank">View Project</a>
+            </div>
+
+            <div class="project-card-new fade-in">
+                <div class="project-card-title">Andy's Valentines</div>
+                <p class="project-card-desc">A web project hosted on Netlify. Built as a practical exercise in front-end development and deployment workflow.</p>
+                <a class="cred-btn" href="https://andysvalentines.netlify.app/" target="_blank">View Project</a>
+            </div>
+
         </div>
     </div>
 </section>
@@ -1214,33 +1330,37 @@
 
             <div class="cred-card fade-in">
                 <img class="cred-logo" src="assets/opswat-introduction-to-critical-infrastructure-protection-icip.png" alt="OPSWAT">
-                <div class="cred-name">OPSWAT Introduction to Computational Infrastructure Protection (ICIP)</div>
-                <div class="cred-issuer">OPSWAT</div>
-                <div class="cred-date">Jun 2026 · Expires Jul 2027</div>
+                <div class="cred-name">Infrastructure Protection (ICIP)</div>
+                <div class="cred-issuer">OPSWAT Academy</div>
+                <div class="cred-date">June 2026, Expires July 2027</div>
+                <p class="cred-desc">Completed specialized training in Critical Infrastructure Protection. Developed a foundational understanding of cybersecurity frameworks, network security protocols, and operational technology safety standards as defined by OPSWAT Academy.</p>
                 <a class="cred-btn" href="assets/introduction_to_cip.png" target="_blank">View Certificate</a>
             </div>
 
             <div class="cred-card fade-in">
                 <img class="cred-logo invert" src="https://logo.svgcdn.com/simple-icons/tryhackme-dark.svg" alt="TryHackMe">
-                <div class="cred-name">Junior Penetration Tester (PT1)</div>
+                <div class="cred-name">Practical Cybersecurity Training</div>
                 <div class="cred-issuer">TryHackMe</div>
-                <div class="cred-date">Apr 2026</div>
+                <div class="cred-date">April 2026</div>
+                <p class="cred-desc">Actively developing competencies in network security, Linux command-line environments, and vulnerability assessment methodologies through structured, hands-on virtual laboratory environments.</p>
                 <a class="cred-btn" href="https://tryhackme.com" target="_blank">View TryHackMe</a>
             </div>
 
             <div class="cred-card fade-in">
                 <img class="cred-logo" src="assets/nwu-logo.png" alt="NWU Sport">
-                <div class="cred-name">Chess Marketing &amp; Public Relations Officer</div>
-                <div class="cred-issuer">NWU Sport · North-West University</div>
-                <div class="cred-date">Feb–Nov 2025</div>
+                <div class="cred-name">Marketing Officer and Chess Instructor</div>
+                <div class="cred-issuer">NWU Sports Department, North-West University</div>
+                <div class="cred-date">February to November 2025</div>
+                <p class="cred-desc">Managed digital campus communications and developed structured chess training programmes for student players. Demonstrated leadership, strategic planning, and performance analysis in an official university capacity.</p>
                 <a class="cred-btn" href="assets/1782494566012.png" target="_blank">View Certificate</a>
             </div>
 
             <div class="cred-card fade-in">
                 <img class="cred-logo" src="assets/umalusi-logo.png" alt="Umalusi">
-                <div class="cred-name">National Senior Certificate · NQF Level 4</div>
-                <div class="cred-issuer">Umalusi · Palm Ridge Ext 6 Secondary School</div>
-                <div class="cred-date">Dec 2023</div>
+                <div class="cred-name">Academic Foundation</div>
+                <div class="cred-issuer">Umalusi, Palm Ridge Ext 6 Secondary School</div>
+                <div class="cred-date">December 2023</div>
+                <p class="cred-desc">Achieved the National Senior Certificate at NQF Level 4 with Bachelor's Pass and two subject distinctions. Maintained a consistent top-ten academic ranking throughout five years of secondary schooling, with emphasis on Mathematics, Physical Sciences, and English.</p>
                 <button class="cred-btn padlock-btn" id="nscLockBtn">LOCK — Restricted</button>
             </div>
 
