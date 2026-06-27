@@ -36,7 +36,7 @@
                 linear-gradient(rgba(0,35,149,0.07) 2px, transparent 2px),
                 linear-gradient(90deg, rgba(255,182,18,0.07) 2px, transparent 2px);
             background-size: 40px 40px, 40px 40px, 200px 200px, 200px 200px;
-            color: #1f2937;
+            color: #1a1a1a;
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -156,7 +156,7 @@
         .hero-name {
             font-family: 'Press Start 2P', cursive;
             font-size: clamp(1.2rem, 4vw, 2.4rem);
-            color: var(--text);
+            color: #1a1a1a;
             line-height: 1.5;
             margin-bottom: 2rem;
             text-shadow: 4px 4px 0 var(--red);
@@ -170,7 +170,7 @@
         .byline {
             font-family: 'Space Mono', monospace;
             font-size: clamp(0.7rem, 2vw, 1rem);
-            color: var(--yellow);
+            color: #E8121C;
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
             opacity: 0;
@@ -310,9 +310,11 @@
         .section-title {
             font-family: 'Press Start 2P', cursive;
             font-size: clamp(0.9rem, 3vw, 1.4rem);
-            color: var(--red);
+            color: #1a1a1a;
             margin-bottom: 3rem;
             line-height: 1.6;
+            border-left: 4px solid #E8121C;
+            padding-left: 12px;
         }
 
         .inner {
@@ -338,7 +340,9 @@
             text-align: center;
             font-family: 'Space Mono', monospace;
             font-size: 0.85rem;
-            color: var(--yellow);
+            color: #F7C948;
+            background: #1a1a1a;
+            padding: 1.5rem 2rem;
             line-height: 1.8;
         }
 
@@ -354,9 +358,10 @@
         }
 
         .skill-card {
-            background: rgba(0,0,0,0.4);
-            border: 2px solid var(--red);
+            background: #ffffff;
+            border: 2px solid #E8121C;
             padding: 1.5rem;
+            color: #1a1a1a;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
@@ -368,7 +373,7 @@
         .skill-group-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: var(--yellow);
+            color: #E8121C;
             letter-spacing: 1px;
             margin-bottom: 1rem;
             border-bottom: 1px solid var(--red);
@@ -384,8 +389,8 @@
         .skill-tag {
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
-            color: var(--text);
-            background: rgba(232,18,28,0.15);
+            color: #1a1a1a;
+            background: rgba(232,18,28,0.12);
             border: 1px solid var(--red);
             padding: 0.25rem 0.5rem;
         }
@@ -434,8 +439,9 @@
             display: inline-block;
             font-family: 'Space Mono', monospace;
             font-size: 0.65rem;
-            background: var(--red);
-            color: var(--text);
+            background: transparent;
+            color: #E8121C;
+            border: 1px solid #E8121C;
             padding: 0.2rem 0.6rem;
             margin-bottom: 0.6rem;
             letter-spacing: 1px;
@@ -444,7 +450,8 @@
         .timeline-entry-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.85rem;
-            color: var(--yellow);
+            color: #1a1a1a;
+            font-weight: bold;
             margin-bottom: 0.5rem;
             line-height: 1.5;
         }
@@ -452,7 +459,7 @@
         .timeline-entry-desc {
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            color: var(--text);
+            color: #1a1a1a;
             line-height: 1.8;
         }
 
@@ -681,8 +688,8 @@
         }
 
         .project-card-new {
-            background: rgba(0,0,0,0.4);
-            border: 2px solid var(--red);
+            background: #ffffff;
+            border: 2px solid #E8121C;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -698,16 +705,25 @@
         .project-card-title {
             font-family: 'Space Mono', monospace;
             font-size: 0.8rem;
-            color: var(--yellow);
+            color: #E8121C;
             line-height: 1.5;
         }
 
         .project-card-desc {
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
-            color: var(--text);
+            color: #1a1a1a;
             line-height: 1.8;
             flex: 1;
+        }
+
+        .project-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: #ffffff;
+            padding: 0.3rem 0.7rem;
+            display: inline-block;
+            letter-spacing: 0.5px;
         }
 
         /* ── CHESS ── */
@@ -726,8 +742,11 @@
         .chess-stats {
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
-            color: var(--yellow);
+            background: #1a1a1a;
+            color: #F7C948;
             letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            display: inline-block;
             margin-bottom: 1.5rem;
         }
 
@@ -737,7 +756,8 @@
             margin-bottom: 1rem;
             font-family: 'Space Mono', monospace;
             font-size: 0.8rem;
-            color: var(--yellow);
+            background: #1a1a1a;
+            color: #F7C948;
             line-height: 1.8;
         }
 
@@ -760,8 +780,8 @@
         }
 
         .cred-card {
-            background: rgba(0,0,0,0.4);
-            border: 2px solid var(--red);
+            background: #ffffff;
+            border: 2px solid #E8121C;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -787,14 +807,14 @@
         .cred-name {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
-            color: var(--text);
+            color: #E8121C;
             line-height: 1.5;
         }
 
         .cred-issuer {
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
-            color: var(--text-muted);
+            color: #1a1a1a;
         }
 
         .cred-date {
@@ -1044,7 +1064,6 @@
         <li><a href="#about">About</a></li>
         <li><a href="#arsenal">Arsenal</a></li>
         <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#ventures">Ventures</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#chess">Chess</a></li>
         <li><a href="#credentials">Credentials</a></li>
@@ -1065,9 +1084,7 @@
         <div class="hero-photo">
             <img src="assets/1000920127.png" alt="Ofentse Matladi">
         </div>
-        <p class="hero-story">
-            "Tony Stark built the Iron Man suit in a cave. Steve Jobs told the world to stay hungry, stay foolish. I built mine from a dying phone in Katlehong — no laptop, no funding, no map. Just hunger."
-        </p>
+        <p class="hero-story" style="font-style:italic;color:#E8121C;font-size:1.15rem;font-family:'Inter',sans-serif;">The absence of resources is not the inability to act.</p>
     </div>
 </section>
 
@@ -1234,49 +1251,9 @@
                 <div class="timeline-dot"></div>
                 <span class="timeline-date-badge">2024–PRESENT</span>
                 <h3 class="timeline-entry-title">Self-Taught Developer</h3>
-                <p class="timeline-entry-desc">Completed Harvard CS50 and IBM AI/NLU curriculum independently. Currently building across web development, AI integration, hardware prototyping, and prompt engineering.</p>
+                <p class="timeline-entry-desc">Independently completed <a href="https://cs50.harvard.edu/x/" target="_blank" style="color:#E8121C;text-decoration:underline;">Harvard CS50</a> and IBM AI and NLU curriculum. Currently building across web development, AI integration, hardware prototyping, and prompt engineering. Also trained via <a href="https://www.freecodecamp.org" target="_blank" style="color:#E8121C;text-decoration:underline;">freeCodeCamp</a> across responsive web design and JavaScript fundamentals.</p>
             </div>
 
-        </div>
-    </div>
-</section>
-
-<div class="pixel-divider"></div>
-
-<!-- Ventures -->
-<section id="ventures">
-    <div class="inner">
-        <h2 class="section-title fade-in">SEDIQ. VENTURES</h2>
-        <p class="ventures-subtitle fade-in">A pilot in progress. A conviction in motion.</p>
-        <div class="ventures-grid">
-            <div class="venture-card fade-in">
-                <div class="venture-name">NOUS</div>
-                <div class="venture-tag">Personal AI Companion</div>
-                <p class="venture-desc">A lifelong AI companion built across 6 dimensions — Biology, Psychology, Education, Environment, Finances, and Social. Designed for the 153 million orphans and disconnected youth who have no guide. Built from a dying phone with no laptop, no funding, no map.</p>
-                <span class="venture-badge">Red Bull Basement 2026 — National Finalist · World Final, San Francisco</span>
-            </div>
-            <div class="venture-card fade-in">
-                <img src="assets/20260517_210937.png" alt="BeasyBaby" class="venture-logo">
-                <div class="venture-name">BeasyBaby</div>
-                <div class="venture-tag">ParentTech Platform</div>
-                <p class="venture-desc">A platform built for young and first-time parents in South Africa. Covering health, finance, wellness, development, AI chat, and community. Free for all users. Android first. Beta launch 2027.</p>
-                <span class="venture-badge">Under SEDIQ. · South Africa First · Global Scale</span>
-            </div>
-        </div>
-
-        <div class="redbull-block fade-in">
-            <div class="redbull-title">RED BULL BASEMENT</div>
-            <div class="redbull-subtitle">"One idea. One stage. 135,000+ competitors."</div>
-            <p class="redbull-stat">2026 — NOUS selected as South Africa National Finalist. Pitched at the World Final, San Francisco, Silicon Valley, June 2026.</p>
-            <p class="redbull-stat">2027 — 25 concepts currently in development for submission. Pipeline is private.</p>
-            <div class="redbull-cred-card">
-                <div class="redbull-cred-title">RED BULL BASEMENT 2026 — TOP SUBMISSION</div>
-                <p class="redbull-cred-body">Official selection email received 10 March 2026 from Red Bull South Africa confirming NOUS as one of the top ideas nationally.</p>
-            </div>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem;">
-                <a href="https://www.redbull.com/gb-en/event-series/basement" target="_blank" class="pixel-btn" style="margin-top:0;">Learn More</a>
-                <a href="assets/redbull-basement-selection.pdf" target="_blank" class="pixel-btn" style="margin-top:0;background:rgba(232,18,28,0.15);border-color:var(--yellow);color:var(--yellow);">View Selection Letter (PDF)</a>
-            </div>
         </div>
     </div>
 </section>
@@ -1288,6 +1265,21 @@
     <div class="inner">
         <h2 class="section-title fade-in">PROJECTS</h2>
         <div class="projects-grid">
+
+            <div class="project-card-new fade-in">
+                <div class="project-card-title">NOUS</div>
+                <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#1a1a1a;letter-spacing:1px;margin-bottom:0.4rem;">Personal AI Companion</div>
+                <p class="project-card-desc">A lifelong AI companion built across six dimensions — Biology, Psychology, Education, Environment, Finances, and Social. Developed independently as a concept product targeting disconnected youth globally. Selected as a National Finalist at Red Bull Basement 2026, South Africa, and represented at the World Final in San Francisco, Silicon Valley.</p>
+                <span class="project-badge" style="background:#E8121C;">RBB 2026 — National Finalist — World Final, San Francisco</span>
+            </div>
+
+            <div class="project-card-new fade-in">
+                <img src="assets/1000920127.png" alt="BeasyBaby" style="height:55px;width:auto;object-fit:contain;display:block;margin-bottom:0.8rem;">
+                <div class="project-card-title">BeasyBaby</div>
+                <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#1a1a1a;letter-spacing:1px;margin-bottom:0.4rem;">ParentTech Platform</div>
+                <p class="project-card-desc">A platform designed for young and first-time parents in South Africa. Core features span health tracking, financial guidance, wellness support, AI-assisted parenting chat, and community engagement. Free for all users at beta launch. Android first. Target release: 2027.</p>
+                <span class="project-badge" style="background:#007A4D;">South Africa First — Beta 2027</span>
+            </div>
 
             <div class="project-card-new fade-in">
                 <div class="project-card-title">OldPort — Portfolio v1</div>
@@ -1342,8 +1334,9 @@
                 <div class="cred-name">Practical Cybersecurity Training</div>
                 <div class="cred-issuer">TryHackMe</div>
                 <div class="cred-date">April 2026</div>
-                <p class="cred-desc">Actively developing competencies in network security, Linux command-line environments, and vulnerability assessment methodologies through structured, hands-on virtual laboratory environments.</p>
-                <a class="cred-btn" href="https://tryhackme.com" target="_blank">View TryHackMe</a>
+                <p class="cred-desc">Currently working toward the Junior Penetration Tester (PT1) certification through TryHackMe. Actively developing competencies in network security, Linux command-line environments, and vulnerability assessment methodologies through structured, hands-on virtual laboratory environments.</p>
+                <img src="assets/ofentsematladi1.png" alt="TryHackMe Level Up" style="width:100%;max-width:400px;display:block;margin:12px auto 0;border-radius:4px;">
+                <a class="cred-btn" href="https://tryhackme.com/p/OfentseMatladi" target="_blank">View Profile</a>
             </div>
 
             <div class="cred-card fade-in">
